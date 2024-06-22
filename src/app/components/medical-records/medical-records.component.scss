@@ -1,0 +1,42 @@
+.row{
+    .rec-num{
+        background-color: var(--main-color);
+        color: white;
+        font-weight: 500;
+        font-size: 1.0625rem;
+    }
+}
+.my-record{
+    height:330px;
+}
+.clickable{
+    cursor: pointer;
+    transition: all .2s ease;
+    &:hover{
+        color: rgb(0, 78, 134) !important;
+    }
+}
+.image-preview{
+    background-color: rgba($color: #000000, $alpha: .5);
+    z-index: 3 !important;
+    .disease-image{
+        width: 600px;
+        .arrows{
+            i{
+                cursor: pointer;
+                transition: all .2s ease;
+                &:hover{
+                    color: var(--tomato) !important;
+                }
+                &:nth-child(1){
+                    left: -70px;
+                }
+                &:nth-child(2){
+                    right: -70px;
+                }
+            }
+
+        }
+        
+    }
+}

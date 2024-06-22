@@ -1,0 +1,15 @@
+@media screen and (max-width : 768px) {
+    table{
+        font-size: .5rem;
+        width: 100%;
+    }
+    tbody{
+        tr{
+            td{
+                button{
+                    font-size: .5rem;
+                }
+            }
+        }
+    }
+}

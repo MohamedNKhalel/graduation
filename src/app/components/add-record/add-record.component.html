@@ -1,0 +1,28 @@
+<div class="main container my-3">
+	<div class="shadow p-3">
+		<div class="w-75 mx-auto">
+			<form (ngSubmit)="sendImage()" [formGroup]="sendImageForm" action="">
+				<div>
+					<ngx-dropzone  class="w-100 m-auto" (change)="onSelect($event)">
+					<ngx-dropzone-label>Drop your image here</ngx-dropzone-label>
+					<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+						<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+					</ngx-dropzone-preview>
+					</ngx-dropzone>
+					<div class="progress mt-3">
+						<div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:percentage + '%'}">
+							{{percentage}}%
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="d-flex justify-content-center align-items-center mt-2">
+						<button [disabled]="sendImageForm.invalid" class="btn btn-outline-primary" type="submit" ><span *ngIf="!loadingFlag">Analyze</span> <span *ngIf="loadingFlag">Analyzing image <i  class="fa fa-spinner fa-spin"></i></span></button>
+					</div>
+					<h2 *ngIf="prediction" class="text-center">Patient possible disease name is : <span class="text-primary">{{prediction}}</span></h2>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+</div>

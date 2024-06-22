@@ -1,0 +1,86 @@
+.main{
+    padding-top: 110px;
+    background-image: linear-gradient(to right,white,bisque);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+.example-form {
+    // min-width: 150px;
+    // max-width: 500px;
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+  
+.wave{
+    width: 40px;
+}
+.line{
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 45%;
+        height: 3px;
+        background-color: var(--bg-color);
+        top: 55%;
+        right: 0px;
+        transform: translateY(-50%);
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        width: 45%;
+        height: 3px;
+        background-color: var(--bg-color);
+        top: 55%;
+        left: 0px;
+        transform: translateY(-50%);
+    }
+}
+.social{
+    button{
+        border: none;
+        padding: 15px 0;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+    }
+    .fa-google{
+        color: red;
+    }
+    .fa-facebook{
+        color: #1E4AE9;
+    }
+    
+}
+
+.main-forms .forget-form{
+    width: 600px;
+
+}
+.all-forms{
+    background-color: rgba($color: #000000, $alpha: .7);
+}
+.login-icon{
+    width: 30px;
+    margin-left: 10px;
+}
+.social button{
+    transition: all .5s ease;
+}
+.social button:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+@media screen and (max-width:768px) {
+    .main-forms .forget-form{
+        width: 380px;
+    }
+}
+.password-eye{
+    right: 10px;
+    cursor: pointer;
+}

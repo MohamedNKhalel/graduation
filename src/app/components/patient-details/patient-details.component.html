@@ -1,0 +1,40 @@
+<section class="main container">
+    <div>
+        <div *ngIf="patient" class="row">
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field >
+                        <mat-label>Patient Name</mat-label>
+                        <input [value]="patient?.name" disabled="" placeholder="name" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field >
+                        <mat-label>Patient Email</mat-label>
+                        <input [value]="patient?.email?patient?.email:'Not assigned yet' " disabled="" placeholder="name" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field >
+                        <mat-label>Patient BirthDate</mat-label>
+                        <input [value]="patient?.birthDate" disabled="" placeholder="name" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field >
+                        <mat-label>Patient Gender</mat-label>
+                        <input [value]="patient?.gender" disabled="" placeholder="name" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            
+        </div>
+        <button *ngIf="patient" [routerLink]="['/records',patient.id]" type="button" class="btn btn-outline-primary d-block m-auto">Show Medical Records</button>
+    </div>
+</section>
