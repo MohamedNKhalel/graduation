@@ -20,10 +20,8 @@ const routes: Routes = [
     {path:"register",loadComponent:()=>import("./components/register/register.component").then((m)=>m.RegisterComponent),title:"Register"},
     {path:"verify-email",loadComponent:()=>import("./components/verify-email/verify-email.component").then((m)=>m.VerifyEmailComponent),title:"Verification"},
     {path:"landing",loadComponent:()=>import("./components/landing/landing.component").then((m)=>m.LandingComponent),title:"Home"}
-
-    
-  ]}
-
+  ]},
+  {path:"**",loadComponent:()=>import('./components/not-found/not-found.component').then((m)=>m.NotFoundComponent)}
 ];
 
 @NgModule({

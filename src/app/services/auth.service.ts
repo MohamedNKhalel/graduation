@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { GoogleAuthProvider} from '@angular/fire/auth'
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
+import firebase from 'firebase/compat/app';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -94,5 +96,7 @@ export class AuthService {
       this._ToastrService.error(err.message)
     })
   }
-  
+
 }
+
+

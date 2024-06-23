@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { RecordsService } from 'src/app/services/records.service';
 import { Location } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddRecordComponent } from '../add-record/add-record.component';
@@ -16,7 +15,7 @@ import { RecordFile } from 'src/app/interfaces/record-file';
   styleUrls: ['./medical-records.component.scss']
 })
 export class MedicalRecordsComponent implements OnInit{
-  constructor(private _DataService:DataService,private _ActivatedRoute:ActivatedRoute,private _RecordsService:RecordsService,private _Location:Location,public _MatDialog: MatDialog){}
+  constructor(private _DataService:DataService,private _ActivatedRoute:ActivatedRoute,private _Location:Location,public _MatDialog: MatDialog){}
   
   patient!:any;
   records!:RecordFile[];
@@ -79,15 +78,7 @@ export class MedicalRecordsComponent implements OnInit{
       }
     })
   }
-  // deleteRecord(){
-  //   this._RecordsService.deleteFile(this.patientId).then(()=>{
-  //     console.log("success");
-      
-  //   }).catch(error=>{
-  //     console.log(error);
-      
-  //   })
-  // }
+
 
 
   open(){

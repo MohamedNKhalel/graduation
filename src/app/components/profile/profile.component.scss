@@ -20,3 +20,63 @@ i{
         color: rgba($color: #000000, $alpha: .5);
     }
 }
+.profile-bottom{
+    span{
+        bottom: 100%;
+        left: 0;
+    }
+    h3{
+        color: var(--main-color);
+        font-weight: 500;
+        span{
+            color: black;
+            font-weight: lighter;
+
+        }
+    }
+}
+mat-form-field{
+    
+    mat-label{
+        color: var(--main-color) !important;
+    }
+    input{
+        &:disabled{
+            color: black !important;
+        }
+    }
+}
+.edit-name{
+    i{
+        top: 30px;
+        right: 15px;
+        cursor: pointer;
+    }
+}
+.user-image{
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    img{
+        cursor: pointer;
+    }
+    &:hover .layer{
+        bottom: 0;
+    }
+    .layer{
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        background-color: rgba($color: #000000, $alpha: .5);
+        width: 100%;
+        height: 35px;
+        transition: all .5s ease-out;
+    }
+}
+.edit-photo{
+    background-color: rgba($color: #000000, $alpha: .5);
+    .photo-form{
+        padding: 15px;
+        width: 700px;
+    }
+}

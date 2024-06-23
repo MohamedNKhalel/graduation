@@ -39,22 +39,101 @@
 </section>
 
 <section class="container w-75">
-    <div class="row justify-content-between align-items-center shadow rounded-2">
-        <div class="col-md-4">
-            <div class="d-flex justify-content-between align-items-center profile-top p-3">
-                <div>
-                    <img class="d-block mx-auto rounded-circle" [src]="user?.photoURL" alt="User image">
+    <div class="row justify-content-between align-items-center shadow rounded-2 ">
+        <div class="col-md-5">
+            <div class="row justify-content-start align-items-center profile-top  p-2">
+                <div class="col-md-4">
+                    <div class="position-relative user-image">
+                        <img class="w-100 " [src]="user?.photoURL" alt="User image">
+                        <div class="layer d-flex justify-content-center align-items-center text-white">
+                            <i (click)="toggleShowPhoto()" class="fa fa-edit "></i>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3>{{user?.displayName}}</h3>
-                    <span>{{user?.email}}</span>
+                <div class="col-md-8">
+                    <div>
+                        <h3>{{user?.displayName}}</h3>
+                        <span>{{user?.email}}</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="p-3" >
-                <button class="btn btn-primary px-4 d-block ms-auto">Edit</button>
+                <button *ngIf="!showInfo" (click)="toggleInfo()" class="btn btn-primary px-4 d-block ms-auto">Show information</button>
+                <button *ngIf="showInfo" (click)="toggleInfo()" class="btn btn-primary px-4 d-block ms-auto">Hide information</button>
+                
             </div>
         </div>
+    </div>
+    <div *ngIf="showInfo">
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="position-relative edit-name">
+                    <mat-form-field appearance="outline" class="w-100 position-relative">
+                        <mat-label>Name</mat-label>
+                        <input [(ngModel)]="newName" [disabled]="acivate" value="{{user?.displayName}}" placeholder="name" type="text" matInput >
+                    </mat-form-field>
+                    <i *ngIf="acivate" (click)="acivate = false" class="fa fa-edit position-absolute   translate-middle-y"></i>
+                    <i *ngIf="!acivate" (click)="editName()" class="fa-regular fa-square-check position-absolute fa-xl translate-middle-y"></i>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input  disabled value="{{user?.email}}" placeholder="Email" type="email" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input disabled value="{{user?.phoneNumber?user.phoneNumber:'Not assigned'}}" placeholder="Phone" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Id</mat-label>
+                        <input disabled value="{{user?.uid}}" placeholder="Id" type="text" matInput >
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row position-relative bg-body-tertiary p-4 mt-5 profile-bottom">
+            <span class="position-absolute bg-body-secondary text-center fs-6  text-dark py-2">Meta information</span>
+            <div class="col-md-6 ">
+                <div>
+                    <h3>Verification : <span>{{user?.emailVerified ? "Email is verified" : 'email not verified '}}</span></h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <h3>created at : <span>{{user?.metadata?.creationTime | date}}</span> </h3>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div>
+                    <h3>Last Sign in time : <span>{{user?.metadata?.lastSignInTime | date}}</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section (click)="toggleShowPhoto()" *ngIf="showEditPhoto" class="edit-photo position-fixed z-3 top-0 bottom-0 start-0 end-0  d-flex justify-content-center align-items-center">
+    <div (click)="stop($event)" class="photo-form bg-body-tertiary rounded-2">
+        <form action="">
+            <ngx-dropzone  class="w-100 m-auto" (change)="onSelect($event)">
+                <ngx-dropzone-label>Drop your new profile photo here</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+                </ngx-dropzone>
+                <button [disabled]="disableButton" type="button" (click)="sendImage()" class="btn btn-outline-primary d-block m-auto mt-3 "><span *ngIf="!photoLoadingFlag">Change photo</span> <span *ngIf="photoLoadingFlag" >processing <i class="fa fa-spinner fa-spin ms-2"></i></span></button>
+        </form>
     </div>
 </section>

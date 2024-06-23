@@ -53,4 +53,6 @@ export class DataService {
   { 
     return this._HttpClient.get(`https://6657d6d45c3617052645ffd9.mockapi.io/health/v1/${endpoint}`)
 }
+
+  
 }

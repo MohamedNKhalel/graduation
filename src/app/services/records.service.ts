@@ -11,7 +11,9 @@ import firebase from 'firebase/compat/app';
 export class RecordsService {
 
   constructor(private _AngularFireStorage:AngularFireStorage, private _AngularFirestore:AngularFirestore) { }
+
   userToken:any =localStorage.getItem('token');
+
   saveFileMetaData(fileObj:RecordFile,patientID:any){
     const fileMeta ={
         id : '',
@@ -35,9 +37,9 @@ export class RecordsService {
     // Format: YYYY-MM-DD HH
     return `${year}-${month}-${day} ${hour}:00`;
   }
-  // getAllFiles(){
-  //   return  this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Upload`);
-  // }
+  getAllFiles(){
+    return  this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Upload`);
+  }
 
   // deleteFile(patientId: string){
   //   // this._AngularFireStorage.ref('/Uploads/'+filemeta.name).delete();

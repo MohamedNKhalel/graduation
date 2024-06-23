@@ -109,7 +109,7 @@ export class AddRecordComponent {
     setTimeout(() => {
       this._MatDialogRef.close(true);
       this._ToastrService.success("Record added successfully")
-    }, 2000);
+    }, 3000);
   }
   
 
