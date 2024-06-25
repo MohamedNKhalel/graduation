@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit{
         user.updateProfile({
           photoURL:this.photoUrl
         })
+        this.disableButton = true;
         this.photoLoadingFlag = false;
         this.showEditPhoto = false;
         this.files =[]

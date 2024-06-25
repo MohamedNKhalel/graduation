@@ -57,6 +57,8 @@ mat-form-field{
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    height: 100px;
+
     img{
         cursor: pointer;
     }
@@ -78,5 +80,17 @@ mat-form-field{
     .photo-form{
         padding: 15px;
         width: 700px;
+    }
+}
+@media screen and (max-width:768px) {
+    .user-info{
+        text-align: center;
+    }
+    .user-image{
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    .info-buttons button{
+        width: 100% !important;
     }
 }

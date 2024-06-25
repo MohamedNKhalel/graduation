@@ -1,5 +1,5 @@
 <!-- <i (click)="goBack()" class="fa-solid fa-arrow-left"></i> -->
-<div *ngIf="records;else msg" class="container my-4">
+<div *ngIf="records;else msg" class="container  my-4">
     <button (click)="open()" type="button" class="btn btn-primary d-block ms-auto">Add new record</button>
     <div class="row justify-content-center g-4 mt-2">
         <div class="col-md-5" *ngFor="let record of records;let i=index">
@@ -37,8 +37,8 @@
     <div (click)="stop($event)"  class="disease-image position-relative">
         <img height="500" [src]="imageUrl" class="w-100" alt="">
         <div class="arrows" >
-            <i (click)="moveLeft()" class="fa fa-arrow-left fa-2x text-white position-absolute top-50 translate-middle-y "></i>
-            <i (click)="moveRight()" class="fa fa-arrow-right fa-2x text-white position-absolute top-50 translate-middle-y "></i>
+            <i  (click)="moveLeft()" class="fa fa-arrow-left fa-2x text-white position-absolute top-50 translate-middle-y "></i>
+            <i  (click)="moveRight()" class="fa fa-arrow-right fa-2x text-white position-absolute top-50 translate-middle-y "></i>
         </div>
     </div>  
 </div>

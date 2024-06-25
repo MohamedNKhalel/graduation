@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -23,6 +23,20 @@ export class MedicalRecordsComponent implements OnInit{
   imageUrl:string = ""
   previewFlag:boolean = false;
   imageIndex:number =0;
+
+  @HostListener("window:keyup",['$event'])
+  keyUp(event:KeyboardEvent){
+    if(event.key === "ArrowLeft"){
+      this.moveLeft()
+    }
+    if(event.key === "ArrowRight"){
+      this.moveRight()
+    }
+    if(event.key === "Escape"){
+      this.previewFlag = false
+    }
+  }
+
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe({
       next:params=>{
@@ -40,6 +54,7 @@ export class MedicalRecordsComponent implements OnInit{
     this.imageUrl = this.records[i].url
       
   }
+
   moveLeft():void
   {
     this.imageIndex--

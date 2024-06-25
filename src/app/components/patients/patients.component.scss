@@ -1,6 +1,13 @@
 @media screen and (max-width : 768px) {
+    mat-label{
+        font-size: .7rem;
+
+    }
+    input::placeholder{
+        font-size: .6rem;
+    }
     table{
-        font-size: .5rem;
+        font-size: .6rem;
         width: 100%;
     }
     tbody{

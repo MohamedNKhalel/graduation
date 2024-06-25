@@ -1,5 +1,6 @@
 .all{
     margin-top: 90px;
+    
 }
 .content{
     margin-block: auto;
@@ -14,4 +15,13 @@
 }
 .side-nav{
     transition: all 1s ease;
+}
+
+@media screen and (max-width:768px) {
+    :host{
+        justify-content: center;
+    }
+    .all{
+        margin-top: 50px !important;
+    }
 }

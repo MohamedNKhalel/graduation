@@ -1,7 +1,3 @@
-// .main{
-//     padding-top: 110px;
-//     min-height: 100vh;
-// }
 .response-container {
     border: 1px solid #ccc;
     padding: 20px;
@@ -66,7 +62,6 @@
     }
     .right{
         #card{
-            width: 450px;
             #cardHeader{
                 text-align: center;
                 h3{
@@ -87,12 +82,23 @@
             }
             #cardBody{
                 height: 350px;
+                max-width: 400px;
                 overflow: auto;
-        
             }
             #cardFooter{
                 padding: 10px;
             }
         }
     }
+}
+
+@media screen and (max-width:768px) {
+  .chat-ai{
+    min-width: 380px !important;
+    z-index: 99;
+    #cardBody{
+      max-width: 380px !important;
+
+    }
+  }
 }

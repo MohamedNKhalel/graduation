@@ -49,8 +49,6 @@ export class PatientsComponent implements OnInit {
   getAllPatients(){
     this._DataService.getAllPatients().subscribe({
       next:res=>{
-        // console.log(res);
-        
         this.patientList = res.map((e:any)=>{
           const data = e.payload.doc.data();
           data.id = e.payload.doc.id;

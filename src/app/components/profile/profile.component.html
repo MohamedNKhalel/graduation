@@ -44,14 +44,14 @@
             <div class="row justify-content-start align-items-center profile-top  p-2">
                 <div class="col-md-4">
                     <div class="position-relative user-image">
-                        <img class="w-100 " [src]="user?.photoURL" alt="User image">
+                        <img  class="w-100 " [src]="user?.photoURL" alt="User image">
                         <div class="layer d-flex justify-content-center align-items-center text-white">
                             <i (click)="toggleShowPhoto()" class="fa fa-edit "></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div>
+                    <div class="user-info">
                         <h3>{{user?.displayName}}</h3>
                         <span>{{user?.email}}</span>
                     </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div class="p-3" >
+            <div class="p-3 info-buttons" >
                 <button *ngIf="!showInfo" (click)="toggleInfo()" class="btn btn-primary px-4 d-block ms-auto">Show information</button>
                 <button *ngIf="showInfo" (click)="toggleInfo()" class="btn btn-primary px-4 d-block ms-auto">Hide information</button>
                 
