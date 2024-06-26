@@ -1,4 +1,4 @@
-  .response-container {
+.response-container {
     border: 1px solid #ccc;
     padding: 20px;
     width: 80% !important;
@@ -43,21 +43,20 @@
   }
 
   .left{
-      position: absolute;
-      top: 90%;
-      transform: translateY(-50%);
-      right: 0;
-      display: flex;
-      cursor: move;
-      z-index: 999;
-      span{
-          cursor: pointer;
-      }
-  }
-  .right{
+    position: fixed;
+    top: 90%;
+    transform: translateY(-50%);
+    right: 0;
+    display: flex;
+    cursor: move;
+    z-index: 999;
+    span{
+        cursor: pointer;
+    }
+}
+.right{
     width: 400px;
-    // display: flex;
-    position: absolute;
+    position: fixed;
     top: 50%;
     right: 0;
     z-index: 999;
@@ -91,55 +90,4 @@
             padding: 10px;
         }
     }
-}
-.chat-ai{
-    min-width: 400px;
-    z-index: 9;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    .right{
-        #card{
-            #cardHeader{
-                text-align: center;
-                h3{
-                    padding-block: 10px;
-                    font-size: 1.2rem;
-                    font-weight: 500;
-                    text-transform: capitalize;
-                    margin: 0;
-                }
-                i{
-                    right: 15px;
-                    font-size: 30px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    color: #555;
-                    cursor: pointer;
-                }
-            }
-            #cardBody{
-                height: 350px;
-                max-width: 400px;
-                overflow: auto;
-            }
-            #cardFooter{
-                padding: 10px;
-            }
-        }
     }
-}
-
-@media screen and (max-width:768px) {
-  .right{
-    width: 360px !important;
-  }
-  .chat-ai{
-    min-width: 380px !important;
-    z-index: 99;
-    #cardBody{
-      max-width: 380px !important;
-
-    }
-  }
-}

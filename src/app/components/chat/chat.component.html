@@ -1,0 +1,29 @@
+<div class="left">
+    <span *ngIf="!chat"    class="bg-info p-3 rounded-5 fs-6 textwh text-primary-emphasis" cdkDrag> <strong (click)="toggleChat()" class="me-1">Need help?</strong> <i class="fa fa-comment-medical"></i></span>
+</div>
+<div *ngIf="chat" class="right" cdkDrag>
+    <div id="card" class="  rounded-2">
+        <div class="rounded-top-2 bg-body-tertiary position-relative" id="cardHeader">
+            <h3 class="text-secondary text-uppercase">Chat</h3>
+            <i (click)="toggleChat()" class="fa-solid fa-circle-xmark position-absolute"></i>
+        </div>
+        <div  id="cardBody" class="bg-body-secondary">
+            <div *ngFor="let message of prompts ; let i = index">
+                <div class="ms-2 mt-4 bg-primary px-3 py-3 rounded-3 prompts">
+                    <span class="text-white">{{message}}</span>
+                </div>
+                <div>
+                    <div *ngIf="generatedText" class="response-container me-2" [innerHtml]="allGeneratedText[i]"> 
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="cardFooter" class="bg-body-tertiary rounded-bottom-2">
+            <div class=" gap-3 d-flex justify-content-between align-items-center">
+            <input (keyup.enter)="generateContent()" [(ngModel)]="prompt" class="form-control" type="text" id="gemini" placeholder="what do you think?">
+                <button [disabled]="prompt == '' " title="talk" type="button" class="btn btn-outline-secondary" (click)="generateContent()"><i *ngIf="!loading" class="fa-solid fa-comment-dots"></i> <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

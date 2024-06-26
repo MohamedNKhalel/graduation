@@ -1,16 +1,16 @@
 .main{
-    padding-top: 110px;
-    background-image: linear-gradient(to right,white,bisque);
+    // background-image: linear-gradient(to right,white,bisque);
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    // min-height: 100vh;
 }
 .example-form {
-    // min-width: 150px;
-    // max-width: 500px;
     width: 100%;
   }
-
+.container{
+    width: 75%;
+    margin: auto;
+}
   .example-full-width {
     width: 100%;
   }
@@ -25,7 +25,7 @@
         position: absolute;
         width: 45%;
         height: 3px;
-        background-color: var(--bg-color);
+        background-color: var(--second-color);
         top: 55%;
         right: 0px;
         transform: translateY(-50%);
@@ -35,18 +35,36 @@
         position: absolute;
         width: 45%;
         height: 3px;
-        background-color: var(--bg-color);
+        background-color: var(--second-color);
         top: 55%;
         left: 0px;
         transform: translateY(-50%);
     }
 }
+button:disabled{
+    border: none !important;
+    color: rgba($color: #fff, $alpha: .5) !important;
+}
 .social{
     button{
         border: none;
-        padding: 15px 0;
+        padding: 10px 0;
         border-radius: 10px;
-        background-color: #f1f1f1;
+        background-color: #095D7E;
+        color: white;
+        position: relative;
+        transition: all .5s ease;
+        &:hover{
+            background-color: var(--main-color);
+            color: white;
+        }
+        .google-icon{
+            width: 25px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     }
     .fa-google{
         color: red;
@@ -68,16 +86,21 @@
     width: 30px;
     margin-left: 10px;
 }
-.social button{
-    transition: all .5s ease;
-}
-.social button:hover{
-    background-color: var(--main-color);
-    color: white;
-}
+
 @media screen and (max-width:768px) {
+    .main{
+        padding-top: 80px !important;
+        padding-bottom: 20px ;
+        
+    }
     .main-forms .forget-form{
         width: 380px;
+    }
+    .container{
+        width: 95% ;
+        img{
+            display: none;
+        }
     }
 }
 .password-eye{
