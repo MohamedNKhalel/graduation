@@ -1,6 +1,6 @@
 import { RecordFile } from './../../interfaces/record-file';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DiseaseService } from 'src/app/disease.service';
@@ -20,10 +20,10 @@ import { GeminiService } from 'src/app/services/gemini.service';
   imports: [CommonModule,NgxDropzoneModule,ReactiveFormsModule,MatSelectModule,MatFormFieldModule,MatInputModule,FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  // providers:[DiseaseService]
+  providers:[DatePipe]
 })
 export class HomeComponent implements OnInit{
-  constructor(private _RecordsService:RecordsService,private _AngularFireStorage:AngularFireStorage,private _DiseaseService:DiseaseService,private _DataService:DataService,private _GeminiService:GeminiService){}
+  constructor(private _DatePipe:DatePipe,private _RecordsService:RecordsService,private _AngularFireStorage:AngularFireStorage,private _DiseaseService:DiseaseService,private _DataService:DataService,private _GeminiService:GeminiService){}
   loadingFlag:boolean = false;
   
   files: File[] = [];
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit{
   currentSelectedFile!:RecordFile;
   percentage:Number =0;
 
+  formattedTimestamp: any ='';
 
   prediction!:string 
   patients:Patient[]=[];
@@ -94,7 +95,7 @@ sendImage(){
 
   record.snapshotChanges().pipe(finalize(()=>{
     storageRef.getDownloadURL().subscribe(downloadLink=>{
-      this.currentSelectedFile.url = downloadLink;
+      this.currentSelectedFile.image = downloadLink;
       this.currentSelectedFile.name = this.currentSelectedFile.file.name;
       this.currentSelectedFile.size = this.currentSelectedFile.file.size;
       this.currentSelectedFile.prediction = this.prediction;

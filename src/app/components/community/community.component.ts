@@ -16,19 +16,6 @@ constructor(private _DataService:DataService){}
   endPoint!:string;
 
   ngOnInit(): void {
-    this.getData();
-
   }
-  getData(){
-    this._DataService.newApi(this.endPoint).subscribe({
-      next:data=>{
-        console.log(data);
-        this.diseases = data
-      },
-      error:err=>{
-        console.log(err);
-        
-      }
-    })
-  }
+  
 }

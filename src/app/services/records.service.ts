@@ -19,13 +19,13 @@ export class RecordsService {
         id : '',
         name : fileObj.name,
         size : fileObj.size,
-        url : fileObj.url,
+        image : fileObj.image,
         prediction : fileObj.prediction,
-        scannedAt: this.getFormattedDate()
+        timestamp: firebase.firestore.Timestamp.now()
     }
     
     fileMeta.id = this._AngularFirestore.createId();
-    this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients/`).doc(patientID).update({medicalRecords:arrayUnion(fileMeta)})
+    this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients/`).doc(patientID).update({scans:arrayUnion(fileMeta)})
   }
 
   getFormattedDate() {
@@ -43,9 +43,9 @@ export class RecordsService {
 
   // deleteFile(patientId: string){
   //   // this._AngularFireStorage.ref('/Uploads/'+filemeta.name).delete();
-  //   return this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/Patients/${patientId}/medicalRecords/0`).delete();
-  //   // this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/Patients/${patientId}`).update({
-  //   //   medicalRecords: firebase.firestore.FieldValue.arrayRemove({ id: recordId }),
+  //   return this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/patients/${patientId}/scans/0`).delete();
+  //   // this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/patients/${patientId}`).update({
+  //   //   scans: firebase.firestore.FieldValue.arrayRemove({ id: recordId }),
   //   // })
   //   // return this._AngularFireStorage.ref('/Uploads/'+filemeta.name).delete().toPromise();
     

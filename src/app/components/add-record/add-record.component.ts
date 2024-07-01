@@ -66,7 +66,7 @@ export class AddRecordComponent {
   
     record.snapshotChanges().pipe(finalize(()=>{
       storageRef.getDownloadURL().subscribe(downloadLink=>{
-        this.currentSelectedFile.url = downloadLink;
+        this.currentSelectedFile.image = downloadLink;
         this.currentSelectedFile.name = this.currentSelectedFile.file.name;
         this.currentSelectedFile.size = this.currentSelectedFile.file.size;
         this.currentSelectedFile.prediction = this.prediction;

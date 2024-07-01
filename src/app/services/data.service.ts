@@ -4,7 +4,7 @@ import { Patient } from '../interfaces/patient';
 import { AuthService } from './auth.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,40 +19,48 @@ export class DataService {
   
   addPatient(patient:Patient){
     this._AngularFirestore.createId();
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`).add(patient);
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`).add(patient);
   }
   
   getAllPatients(){
     this.userToken =localStorage.getItem('token');
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`).snapshotChanges();
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`).snapshotChanges();
   }
 
 
   getSpecificPatient()
   {
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`)
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`)
   }
 
   updateDiseaseProperty(){
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`)
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`)
   }
   updatePatientId(){
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`)
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`)
 
   }
   deletePatient(patient:Patient){
-    return this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/Patients/${patient.id}`).delete();
+    return this._AngularFirestore.doc(`users/${JSON.parse(this.userToken)}/patients/${patient.id}`).delete();
     
   }
 
   updatePatient(){
-    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/Patients`)
+    return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`)
   }
 
-  newApi(endpoint:any ="medical" ):Observable<any>
-  { 
-    return this._HttpClient.get(`https://6657d6d45c3617052645ffd9.mockapi.io/health/v1/${endpoint}`)
-}
-
-  
+  // getTimestamp(): Observable<any> {
+  //   return this._AngularFirestore.collection('yourCollection').doc('yourDocumentId').get()
+  //     .pipe(map(snapshot => {
+  //         const data = snapshot.data();
+  //         if (data) {
+  //           return {
+  //             ...data,
+  //             timestamp: data.timestamp.toDate() // Convert Firestore Timestamp to Date
+  //           };
+  //         }
+  //         return null;
+  //       })
+  //     );
+  // }
 }

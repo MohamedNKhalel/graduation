@@ -19,6 +19,9 @@
     z-index: 3 !important;
     .disease-image{
         width: 600px;
+        img{
+            height: 350px;
+        }
         .arrows{
             i{
                 cursor: pointer;
@@ -36,5 +39,10 @@
 
         }
         
+    }
+}
+@media screen and (max-width:768px) {
+    .disease-image{
+        width: 60% !important;
     }
 }

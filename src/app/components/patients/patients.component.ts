@@ -34,6 +34,7 @@ export class PatientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPatients();
+    
 }
 
   createPatientForm:FormGroup= new FormGroup({

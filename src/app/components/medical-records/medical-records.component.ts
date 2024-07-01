@@ -23,7 +23,7 @@ export class MedicalRecordsComponent implements OnInit{
   imageUrl:string = ""
   previewFlag:boolean = false;
   imageIndex:number =0;
-
+  timeStamp:any = ''
   @HostListener("window:keyup",['$event'])
   keyUp(event:KeyboardEvent){
     if(event.key === "ArrowLeft"){
@@ -49,9 +49,9 @@ export class MedicalRecordsComponent implements OnInit{
   selectImage(i:any){
     this.imageIndex = i;
     console.log(this.imageIndex);
-    console.log(this.records[i].url);
+    console.log(this.records[i].image);
     this.previewFlag = true;
-    this.imageUrl = this.records[i].url
+    this.imageUrl = this.records[i].image
       
   }
 
@@ -61,7 +61,7 @@ export class MedicalRecordsComponent implements OnInit{
     if(this.imageIndex < 0){
       this.imageIndex = this.records.length -1
     }
-    this.imageUrl = this.records[this.imageIndex].url
+    this.imageUrl = this.records[this.imageIndex].image
   }
   moveRight():void
   {
@@ -69,7 +69,7 @@ export class MedicalRecordsComponent implements OnInit{
     if(this.imageIndex == this.records.length){
       this.imageIndex = 0;
     }
-    this.imageUrl = this.records[this.imageIndex].url
+    this.imageUrl = this.records[this.imageIndex].image
   }
 
 
@@ -83,9 +83,8 @@ export class MedicalRecordsComponent implements OnInit{
     this._DataService.getSpecificPatient().doc(patientId).get().subscribe({
       next:data=>{
         this.patient = data.data()
-        this.records = this.patient.medicalRecords
+        this.records = this.patient.scans
         console.log(this.records);
-
       },
       error:err=>{
         console.log(err);

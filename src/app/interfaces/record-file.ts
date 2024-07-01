@@ -3,9 +3,9 @@ export class RecordFile {
     name:string = '';
     size:number = 0;
     prediction:string = "";
-    url:string = '';
+    image:string = '';
     file:File;
-    scannedAt:string =''
+    timestamp:any =''
 
     
     constructor(file:File){

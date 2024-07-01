@@ -8,11 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PhoneSearchPipe } from 'src/app/pipes/phone-search.pipe';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
   declarations: [SearchPipe,GenderSearchPipe,PhoneSearchPipe],
-  imports: [CommonModule,FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,SweetAlert2Module.forRoot(),NgxDropzoneModule],
-  exports:[PhoneSearchPipe,SearchPipe,GenderSearchPipe,FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,SweetAlert2Module,NgxDropzoneModule]
+  imports: [CommonModule,FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,SweetAlert2Module.forRoot(),NgxDropzoneModule,MatDatepickerModule],
+  exports:[PhoneSearchPipe,SearchPipe,GenderSearchPipe,FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,SweetAlert2Module,NgxDropzoneModule,MatDatepickerModule]
 })
 export class SharedModule { }

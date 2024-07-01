@@ -7,8 +7,8 @@
             <li routerLink="/patients" routerLinkActive="btn-nav">
                 <a class="text-decoration-none text-dark" ><i class="fa-solid fa-hospital-user"></i><span *ngIf="!layOutVar" class="ms-3">patients</span></a>
             </li>
-            <li routerLink="/community" routerLinkActive="btn-nav">
-                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-globe"></i><span *ngIf="!layOutVar" class="ms-3">community</span></a>
+            <li routerLink="/profile" routerLinkActive="btn-nav">
+                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-user"></i><span *ngIf="!layOutVar" class="ms-3">Profile</span></a>
             </li>
         </ul>
         <a  class="fs-6 text-decoration-none text-dark sign-out-icon" (click)="logOut()"> <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> <span *ngIf="!layOutVar">Sign Out</span></a>

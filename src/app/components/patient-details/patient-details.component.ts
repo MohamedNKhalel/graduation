@@ -26,6 +26,8 @@ export class PatientDetailsComponent implements OnInit{
   temprature:string ='';
   rates:any = {}
   ngOnInit(): void {
+      
+
       this._ActivatedRoute.paramMap.subscribe({
         next:params=>{
           let patientId = params.get('id');
@@ -44,10 +46,10 @@ export class PatientDetailsComponent implements OnInit{
     this.showEdit = !this.showEdit
     this.editRatesDisabled = !this.editRatesDisabled
     this._DataService.updatePatient().doc(this.patientId).update({
-      rate:{
-        bloodPressure : this.bloodPressure,
-        SugarPressure : this.SugarPressure,
-        temprature : this.temprature
+      rates:{
+        blood : this.bloodPressure,
+        glucose : this.SugarPressure,
+        Temperature : this.temprature
       }
     }
   )
@@ -64,11 +66,11 @@ export class PatientDetailsComponent implements OnInit{
       next:res=>{
         this.patient = res.data()
         console.log(res.data());
-        console.log(this.patient.rate);
-        this.rates = this.patient.rate;
-        this.bloodPressure = this.rates.bloodPressure
-        this.SugarPressure = this.rates.SugarPressure
-        this.temprature = this.rates.temprature
+        console.log(this.patient.rates);
+        this.rates = this.patient.rates;
+        this.bloodPressure = this.rates?.blood;
+        this.SugarPressure = this.rates?.glucose;
+        this.temprature = this.rates?.Temperature;
         
       },
       error:err=>{

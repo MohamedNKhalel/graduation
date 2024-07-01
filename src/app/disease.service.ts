@@ -10,6 +10,6 @@ export class DiseaseService {
   constructor(private _HttpClient:HttpClient) { }
   diseaseApi(data:any):Observable<any>
   {
-    return this._HttpClient.post(`http://127.0.0.1:5000/skinCancer`,data)
+    return this._HttpClient.post(`http://127.0.0.1:5000/DermaApp`,data)
   }
 }

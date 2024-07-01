@@ -15,12 +15,12 @@
                                 <h3>{{record?.prediction}}</h3>
                                 <h3>{{record?.name}}</h3>
                                 <h3>{{record?.id}}</h3>
-                                <h3>{{record?.scannedAt | date}}</h3>
+                                <h3>{{record?.timestamp }}</h3>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div>
-                                <img class="w-100 rounded-2" height="150px" [src]="record?.url" alt="disease image">
+                                <img class="w-100 rounded-2" height="150px" [src]="record?.image" alt="disease image">
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
 
 <div *ngIf="previewFlag" (click)="previewFlag = false" class="image-preview position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
     <div (click)="stop($event)"  class="disease-image position-relative">
-        <img height="500" [src]="imageUrl" class="w-100" alt="">
+        <img  [src]="imageUrl" class="w-100" alt="">
         <div class="arrows" >
             <i  (click)="moveLeft()" class="fa fa-arrow-left fa-2x text-white position-absolute top-50 translate-middle-y "></i>
             <i  (click)="moveRight()" class="fa fa-arrow-right fa-2x text-white position-absolute top-50 translate-middle-y "></i>

@@ -31,16 +31,6 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
-  // closeSideNav(){
-  //   this.show = !this.show
-  //   this._Renderer2.setStyle(this.sideNav.nativeElement,"width",'60px');
-
-  // }
-  // openSideNav(){
-  //   this.show = !this.show
-  //   this._Renderer2.removeStyle(this.sideNav.nativeElement,'width')
-  // }
   logOut(){
     this._AuthService.signOut();
   }

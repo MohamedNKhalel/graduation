@@ -4,10 +4,11 @@ export interface Patient {
     id:string;
     name:string,
     gender:string,
-    birthDate:string,
+    date_of_birth:string,
+    doctor_uid:string,
     phone:string,
     email:string,
-    medicalRecords:RecordFile,
+    scans:RecordFile,
     rate:{
         bloodPressureRate:number,
         bloodSugarRate:number,
