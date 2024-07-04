@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { finalize } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit{
-  constructor(private _AuthService:AuthService,private _AngularFireAuth:AngularFireAuth,private _AngularFireStorage:AngularFireStorage,private _ToastrService:ToastrService){}
+  constructor(private _AuthService:AuthService,private _AngularFireAuth:AngularFireAuth,private _AngularFireStorage:AngularFireStorage,private _ToastrService:ToastrService,private _DataService:DataService){}
   user!:any;
   email:string = ''
   acivate:boolean= true;
@@ -29,8 +30,11 @@ export class ProfileComponent implements OnInit{
   showEditPhoto:boolean = false;
   photoLoadingFlag:boolean = false;
   disableButton:boolean = true;
-
-
+  
+  ngOnInit(): void {
+      this.getUserData()      
+  }
+  
   toggleShowPhoto(){
     this.showEditPhoto = !this.showEditPhoto
   }
@@ -84,9 +88,6 @@ export class ProfileComponent implements OnInit{
       this._ToastrService.error("can't update profile photo right now")
       
     }
-  }
-  ngOnInit(): void {
-      this.getUserData()      
   }
   toggleInfo(){
     this.showInfo = !this.showInfo

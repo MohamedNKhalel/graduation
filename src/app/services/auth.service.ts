@@ -22,7 +22,7 @@ export class AuthService {
     this._AngularFireAuth.signInWithEmailAndPassword(email,password).then(res=>{
       if(res.user?.emailVerified ==true){
         localStorage.setItem('token',JSON.stringify(res.user?.uid));
-        this._Router.navigate(['/home']);
+        this._Router.navigate(['/patients']);
         this._ToastrService.success('logged successfully' ,'Done')
       }else{{
         this._Router.navigate(['/verify-email']);
@@ -90,7 +90,7 @@ export class AuthService {
   signInWithGoogle(){
     this._AngularFireAuth.signInWithPopup(new GoogleAuthProvider).then(res=>{
       localStorage.setItem('token',JSON.stringify(res.user?.uid));
-      this._Router.navigate(['/home']);
+      this._Router.navigate(['/patients']);
       this._ToastrService.success('logged Successfully')
     },err=>{
       this._ToastrService.error(err.message)

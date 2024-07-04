@@ -1,28 +1,40 @@
 <div class="left">
-    <span *ngIf="!chat"    class="bg-info p-3 rounded-5 fs-6 textwh text-primary-emphasis" cdkDrag> <strong (click)="toggleChat()" class="me-1">Need help?</strong> <i class="fa fa-comment-medical"></i></span>
+    <span *ngIf="!chat" class=" p-3 rounded-5 fs-6 textwh text-primary-emphasis" cdkDrag> <strong (click)="toggleChat()" class="me-1"><img src="assets/images/assist.png" alt=""></strong></span>
 </div>
-<div *ngIf="chat" class="right" cdkDrag>
+<div *ngIf="chat" class="right" >
     <div id="card" class="  rounded-2">
         <div class="rounded-top-2 bg-body-tertiary position-relative" id="cardHeader">
-            <h3 class="text-secondary text-uppercase">Chat</h3>
+            <h3 class="title text-uppercase">DERMA</h3>
             <i (click)="toggleChat()" class="fa-solid fa-circle-xmark position-absolute"></i>
         </div>
-        <div  id="cardBody" class="bg-body-secondary">
+        <div  id="cardBody" class="bg-body-secondary py-4 px-3">
             <div *ngFor="let message of prompts ; let i = index">
-                <div class="ms-2 mt-4 bg-primary px-3 py-3 rounded-3 prompts">
-                    <span class="text-white">{{message}}</span>
-                </div>
-                <div>
-                    <div *ngIf="generatedText" class="response-container me-2" [innerHtml]="allGeneratedText[i]"> 
+                <div  class="my-4 d-flex  align-items-center message-sender">
+                    <div class="position-relative p-3">
+                        <span class="position-absolute text-muted sender">{{userName.split(' ').slice(0,1).join(' ')}}</span>
+                        <img src="assets/images/doctor.png" class="user" alt="user">
                     </div>
+                    <div class="prompts px-3 py-3 rounded-3 ">
+                        <span class="text-white">{{message}}</span>
+                    </div>
+                </div>
+                <div class="response d-flex align-items-center position-relative">
+                    <div *ngIf="generatedText" class="response-container px-3 py-3 rounded-3"  [innerHtml]="allGeneratedText[i]" >
+                    </div>
+                    
+                    <div class="position-relative p-3 ">
+                        <img src="assets/images/assist.png" alt="">
+                        <span class="position-absolute Assistant">Assistant</span>
+                    </div>
+
                 </div>
             </div>
             
         </div>
         <div id="cardFooter" class="bg-body-tertiary rounded-bottom-2">
             <div class=" gap-3 d-flex justify-content-between align-items-center">
-            <input (keyup.enter)="generateContent()" [(ngModel)]="prompt" class="form-control" type="text" id="gemini" placeholder="what do you think?">
-                <button [disabled]="prompt == '' " title="talk" type="button" class="btn btn-outline-secondary" (click)="generateContent()"><i *ngIf="!loading" class="fa-solid fa-comment-dots"></i> <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
+                <input (keyup.enter)="generateContent()" [(ngModel)]="prompt" class="form-control" type="text" id="gemini" placeholder="Write a message...">
+                <button [disabled]="prompt == '' " title="talk" type="button" class="btn btn-outline-light" (click)="generateContent()"><i *ngIf="!loading" class="fa-solid fa-paper-plane"></i> <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
             </div>
         </div>
     </div>

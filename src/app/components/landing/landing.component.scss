@@ -27,14 +27,16 @@
 .tagline{
     // display: none;
     span{  
-    color: var(--main-color);
+    color: var(--tomato);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.5625rem;
+    letter-spacing: 5px;
+    line-height: 1.5;
     }
     h1{
         font-size: 4em;
         line-height: 1.1;
-        color: black;
+        color: var(--main-color);
         font-weight: 700;
         width: 40%;
     }
@@ -73,6 +75,8 @@
             line-height: 2;
             font-weight: 400;
             color: rgba($color: #000000, $alpha: .5);
+            letter-spacing: 2px;
+            line-height: 2.5;
         }
     }
 

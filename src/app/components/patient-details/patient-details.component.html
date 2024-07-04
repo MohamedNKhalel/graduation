@@ -4,43 +4,57 @@
         <div *ngIf="patient" class="row shadow p-2  rounded-2">
             <h3 class="title border-bottom text-center text-uppercase text-info pb-2">Patient Information</h3>
             <div class="col-md-6">
-                <div>
+                <div class="info">
                     <mat-form-field  appearance="outline" >
                         <mat-label>Patient Name</mat-label>
                         <input [value]="patient?.name" disabled placeholder="name" type="text" matInput >
                     </mat-form-field>
+                    <img src="assets/images/medical records/registration.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="info">
                     <mat-form-field  appearance="outline" >
                         <mat-label>Patient Email</mat-label>
                         <input [value]="patient?.email?patient?.email:'Not assigned yet' " disabled placeholder="email" type="text" matInput >
                     </mat-form-field>
+                    <img src="assets/images/medical records/mail.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="info">
                     <mat-form-field  appearance="outline" >
                         <mat-label>Patient BirthDate</mat-label>
                         <input [value]="patient?.date_of_birth" disabled placeholder="birth" type="text" matInput >
                     </mat-form-field>
+                    <img src="assets/images/medical records/calendar.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="info">
                     <mat-form-field  appearance="outline" >
                         <mat-label>Patient Gender</mat-label>
                         <input [value]="patient?.gender" disabled placeholder="gender" type="text" matInput >
                     </mat-form-field>
+                    <img src="assets/images/medical records/gender.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="info">
                     <mat-form-field appearance="outline" >
                         <mat-label>Patient Phone</mat-label>
                         <input [value]="patient?.phone" disabled placeholder="phone" type="text" matInput >
                     </mat-form-field>
+                    <img src="assets/images/medical records/phone-call.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>Patient Age</mat-label>
+                        <input [value]="age" disabled placeholder="age" type="text" matInput >
+                    </mat-form-field>
+                    <img src="assets/images/medical records/age.png" alt="">
                 </div>
             </div>
         </div>
@@ -52,30 +66,35 @@
                 <button *ngIf="showEdit" (click)="updatePatientRates()" class="btn btn-outline-dark d-block ms-auto my-2">Submit Editing</button>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="rate">
                     <mat-form-field  appearance="outline">
                         <mat-label>Blood pressure</mat-label>
                         <input *ngIf="editRatesDisabled" placeholder="rate" [disabled]="editRatesDisabled" [value]="rates?.blood ? rates.blood : 'Not assigned' " type="text" matInput>
                         <input *ngIf="!editRatesDisabled" [(ngModel)]="bloodPressure" placeholder="rate" [disabled]="editRatesDisabled"  type="text" matInput>
                     </mat-form-field>
+                    <img src="assets/images/blood-donation.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="rate">
                     <mat-form-field  appearance="outline">
                         <mat-label>Blood Sugar</mat-label>
                         <input *ngIf="editRatesDisabled"  placeholder="rate" [disabled]="editRatesDisabled" [value]="rates?.glucose ? rates.glucose : 'Not assigned' " type="text" matInput>
                         <input *ngIf="!editRatesDisabled" [(ngModel)]="SugarPressure" placeholder="rate" [disabled]="editRatesDisabled"  type="text" matInput>
                     </mat-form-field>
+                    <img src="assets/images/blood-pressure.png" alt="">
+
                 </div>
             </div>
             <div class="col-md-6">
-                <div>
+                <div class="rate">
                     <mat-form-field  appearance="outline">
                         <mat-label>Temprature</mat-label>
                         <input *ngIf="editRatesDisabled"  placeholder="rate" [disabled]="editRatesDisabled" [value]="rates?.Temperature ? rates.Temperature : 'Not assigned' " type="text" matInput>
                         <input *ngIf="!editRatesDisabled" [(ngModel)]="temprature" placeholder="rate" [disabled]="editRatesDisabled"  type="text" matInput>
                     </mat-form-field>
+                    <img src="assets/images/temprature.png" alt="">
+
                 </div>
             </div>
             

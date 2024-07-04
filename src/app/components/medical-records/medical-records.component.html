@@ -2,31 +2,22 @@
 <div *ngIf="records;else msg" class="container  my-4">
     <button (click)="open()" type="button" class="btn btn-primary d-block ms-auto">Add new record</button>
     <div class="row justify-content-center g-4 mt-2">
-        <div class="col-md-5" *ngFor="let record of records;let i=index">
+        <div class="col-md-4" *ngFor="let record of records;let i=index">
             <div class="shadow my-record p-3 rounded-2 border d-flex flex-column justify-content-between">
                 <div class="position-relative mb-2">
                     <h2 class="text-center me-3 text-uppercase">{{record?.prediction?.split(' ')?.slice(0,2)?.join(' ')}}</h2>
                     <span class="rec-num p-2 rounded-3 position-absolute top-0 end-0">{{i+1}}</span>
                 </div>
                 <div>
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-md-7">
-                            <div class="text-muted">
-                                <h3>{{record?.prediction}}</h3>
-                                <h3>{{record?.name}}</h3>
-                                <h3>{{record?.id}}</h3>
-                                <h3>{{record?.timestamp }}</h3>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div>
-                                <img class="w-100 rounded-2" height="150px" [src]="record?.image" alt="disease image">
-                            </div>
-                        </div>
-                    </div>
+                    <img class="w-100 rounded-2" height="200" [src]="record?.image" alt="disease image">
+                </div>
+                <div class="py-2">
+                    <h3>Prediction : <span class="text-muted">{{record?.prediction}}</span></h3>
+                    <h3>File attached : <span class="text-muted">{{record?.name?record.name:"uploaded from phone"}}</span></h3>
+                    <h3>Date : <span class="text-muted">{{date[i] | date: 'medium'}}</span></h3>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-outline-info d-block m-auto mt-4" (click)="selectImage(i)">Preview</button>
+                    <button type="button" class="btn btn-outline-info d-block m-auto " (click)="selectImage(i)">Preview</button>
                 </div>
             </div>
         </div>
@@ -34,12 +25,10 @@
 </div>
 
 <div *ngIf="previewFlag" (click)="previewFlag = false" class="image-preview position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
-    <div (click)="stop($event)"  class="disease-image position-relative">
+    <div (click)="stop($event)"  class="disease-image position-relative d-flex">
+        <i *ngIf="clicked" (click)="moveLeft()" class="fa fa-arrow-left start-0 fa-2x text-white me-2 my-auto"></i>
         <img  [src]="imageUrl" class="w-100" alt="">
-        <div class="arrows" >
-            <i  (click)="moveLeft()" class="fa fa-arrow-left fa-2x text-white position-absolute top-50 translate-middle-y "></i>
-            <i  (click)="moveRight()" class="fa fa-arrow-right fa-2x text-white position-absolute top-50 translate-middle-y "></i>
-        </div>
+        <i *ngIf="records.length>1" (click)="moveRight()" class="fa fa-arrow-right fa-2x end-0 text-white ms-2 my-auto"></i>
     </div>  
 </div>
 <ng-template #msg>

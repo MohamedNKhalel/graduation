@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GeminiService } from 'src/app/services/gemini.service';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,8 +12,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
-  constructor(private _GeminiService:GeminiService){}
+export class ChatComponent implements OnInit{
+  constructor(private _GeminiService:GeminiService,private _AuthService:AuthService){}
 
   prompt:string = '';
   prompts:string[] =[];
@@ -20,14 +21,20 @@ export class ChatComponent {
   chat:boolean=false;
   loading:boolean = false;
   generatedText:string='';
-
+  msg:string =''
+  userName:any = ''
+  ngOnInit(): void {
+      this.getUserData()
+      
+  }
   generateContent() {
     if(this.prompt != ''){
       this.loading = true;
+      
+      this.prompts.push(this.prompt)
       this._GeminiService.generateContent(this.prompt).subscribe({
         next: (response) => {
           this.loading =false;
-          this.prompts.push(this.prompt)
           const text = response.candidates[0].content.parts[0].text; 
           this.generatedText = this.styleContent(text)
           this.allGeneratedText.push(this.generatedText)
@@ -53,5 +60,14 @@ export class ChatComponent {
   }
   toggleChat(){
     this.chat = !this.chat;
+    
+  }
+  getUserData(){
+    this._AuthService.getUserInfo().subscribe({
+      next:data=>{
+        this.userName = data?.displayName
+        
+      }
+    })
   }
 }

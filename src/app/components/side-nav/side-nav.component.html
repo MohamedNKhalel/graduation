@@ -1,11 +1,11 @@
 <div class="side-nav bg-body-tertiary p-5 ">
     <aside class="d-flex flex-column justify-content-between h-100">
         <ul class="list-unstyled d-flex flex-column gap-5">
-            <li  routerLink="/home" routerLinkActive="btn-nav">
-                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-home"></i><span *ngIf="!layOutVar" class="ms-3">home</span></a>
-            </li>
             <li routerLink="/patients" routerLinkActive="btn-nav">
                 <a class="text-decoration-none text-dark" ><i class="fa-solid fa-hospital-user"></i><span *ngIf="!layOutVar" class="ms-3">patients</span></a>
+            </li>
+            <li  routerLink="/scan" routerLinkActive="btn-nav">
+                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-camera"></i><span *ngIf="!layOutVar" class="ms-3">Scan</span></a>
             </li>
             <li routerLink="/profile" routerLinkActive="btn-nav">
                 <a class="text-decoration-none text-dark" ><i class="fa-solid fa-user"></i><span *ngIf="!layOutVar" class="ms-3">Profile</span></a>

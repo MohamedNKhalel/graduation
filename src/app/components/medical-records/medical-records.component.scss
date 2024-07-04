@@ -22,23 +22,13 @@
         img{
             height: 350px;
         }
-        .arrows{
             i{
                 cursor: pointer;
                 transition: all .2s ease;
                 &:hover{
                     color: var(--tomato) !important;
                 }
-                &:nth-child(1){
-                    left: -70px;
-                }
-                &:nth-child(2){
-                    right: -70px;
-                }
             }
-
-        }
-        
     }
 }
 @media screen and (max-width:768px) {

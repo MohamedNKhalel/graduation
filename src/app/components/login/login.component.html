@@ -4,7 +4,7 @@
         <div class="row align-items-center rounded-5 bg-body-secondary">
             <div class="col-md-7  p-5 bg-white">
                 <div>
-                    <h2 class="text-uppercase  text-primary fw-bolder">Log into your account</h2>
+                    <h2 class="text-uppercase  title fw-bolder">Log into your account</h2>
                     <form [formGroup]="loginForm"  class="example-form mt-5">
                         <mat-form-field class="example-full-width mb-2" appearance="outline">
                             <mat-label>Email</mat-label>
@@ -34,7 +34,7 @@
                             <a routerLink="/register" class="text-decoration-none d-block">Register now</a>
                         </div>
                         <div>
-                            <button [disabled]="loginForm.invalid" type="button" (click)="login()" class="btn-main w-100 mt-4"><span *ngIf="!loadingFlag">Sign in</span><i *ngIf="loadingFlag" class="fa fa-spinner fa-spin"></i></button>
+                            <button [disabled]="loginForm.invalid" type="button" (click)="login()" class="btn-main w-100 mt-4"><span *ngIf="!loadingFlag">Log in</span><i *ngIf="loadingFlag" class="fa fa-spinner fa-spin"></i></button>
                         </div>
                     </form> 
                     <p class="line text-center mt-4">Or</p>

@@ -1,19 +1,34 @@
-.response-container {
+.response{
+  .response-container {
     border: 1px solid #ccc;
-    padding: 20px;
-    width: 80% !important;
+    width: max-content;
+    max-width: 80% !important;
     margin-left: auto;
-    margin-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
+    
+  }
+  img{
+    width: 50px;
+  }
+  .Assistant{
+    top:80%;
+    right: 8px;
+  }
+}
+.message-sender{
+  // max-width: 80% !important;
+  .prompts{
+    max-width: 80% !important;
+    width: max-content;
+    background-color: var(--main-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   }
-  .prompts{
-    width: max-content;
-    max-width: 80% !important;
-  }
+}
+  
   .response-container h2 {
     font-size: 22px;
     margin-bottom: 10px;
@@ -41,7 +56,14 @@
     font-weight: bold;
     color: #000;
   }
-
+  .user{
+    width: 50px;
+  }
+  .sender{
+    top: 80%;
+    left: 8px;
+    text-align: center;
+  }
   .left{
     position: fixed;
     top: 90%;
@@ -53,17 +75,20 @@
     span{
         cursor: pointer;
     }
+    img{
+      width: 60px;
+    }
 }
 .right{
-    width: 400px;
+    width: 40%;
     position: fixed;
-    top: 50%;
+    top: 0;
+    bottom: 0;
     right: 0;
     z-index: 999;
-    transform: translateY(-50%);
     #card{
         #cardHeader{
-            cursor: move;
+            background-color: var(--main-color) !important;
             text-align: center;
             h3{
                 padding-block: 10px;
@@ -71,23 +96,39 @@
                 font-weight: 500;
                 text-transform: capitalize;
                 margin: 0;
+                color: var(--magnolia);
             }
             i{
                 right: 15px;
                 font-size: 30px;
                 top: 50%;
                 transform: translateY(-50%);
-                color: #555;
+                color: var(--magnolia);
                 cursor: pointer;
             }
         }
         #cardBody{
-            height: 350px;
-            max-width: 400px;
+            height: 85.5vh;
             overflow: auto;
         }
         #cardFooter{
             padding: 10px;
+            background-color: var(--main-color) !important;
+            
+            button{
+              color:white !important;
+            }
         }
     }
+    }
+
+    @media screen and (max-width:768px) {
+      .right{
+        width: 100%;
+      }
+      #card{
+        #cardBody{
+          height: 84vh !important;
+        }
+      }
     }

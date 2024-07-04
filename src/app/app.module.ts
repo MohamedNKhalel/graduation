@@ -27,7 +27,7 @@ import { PhoneSearchPipe } from './pipes/phone-search.pipe';
     BrowserAnimationsModule,MatSlideToggleModule,NgxDropzoneModule,HttpClientModule,AngularFireModule.initializeApp(environment.firebase),
     
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],  
+  // providers: [{provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

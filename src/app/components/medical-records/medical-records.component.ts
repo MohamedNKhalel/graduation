@@ -23,7 +23,10 @@ export class MedicalRecordsComponent implements OnInit{
   imageUrl:string = ""
   previewFlag:boolean = false;
   imageIndex:number =0;
-  timeStamp:any = ''
+  timeStamp:any[] = [];
+  date:Date[] =[];
+  clicked:boolean = false;
+
   @HostListener("window:keyup",['$event'])
   keyUp(event:KeyboardEvent){
     if(event.key === "ArrowLeft"){
@@ -44,6 +47,8 @@ export class MedicalRecordsComponent implements OnInit{
       }
     })
     this.getPatientById(this.patientId);
+    
+    
   }
 
   selectImage(i:any){
@@ -65,6 +70,7 @@ export class MedicalRecordsComponent implements OnInit{
   }
   moveRight():void
   {
+    this.clicked = true
     this.imageIndex +=1
     if(this.imageIndex == this.records.length){
       this.imageIndex = 0;
@@ -84,7 +90,15 @@ export class MedicalRecordsComponent implements OnInit{
       next:data=>{
         this.patient = data.data()
         this.records = this.patient.scans
-        console.log(this.records);
+        for(let i = 0 ;i < this.records.length;i++){
+          this.timeStamp.push(this.records[i].timestamp)
+          
+        }
+        console.log(this.timeStamp);
+
+        this.date = this.convertTimestampsToDates(this.timeStamp);
+        console.log(this.date , "date");
+        
       },
       error:err=>{
         console.log(err);
@@ -94,6 +108,12 @@ export class MedicalRecordsComponent implements OnInit{
   }
 
 
+  convertTimestampsToDates(timestamps: { seconds: number, nanoseconds: number }[]): Date[] {
+    return timestamps.map(timestamp => {
+      const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+      return new Date(milliseconds);
+    });
+  }
 
   open(){
     const dialogRef = this._MatDialog.open(AddRecordComponent, {

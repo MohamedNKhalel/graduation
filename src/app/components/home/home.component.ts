@@ -36,8 +36,16 @@ export class HomeComponent implements OnInit{
   prediction!:string 
   patients:Patient[]=[];
 
+  skinDiseasePhotoUrl: string | undefined;
+  diseaseName: string | undefined;
+  description: string | undefined;
+  symptoms: string[] = [];
+  treatment: string | undefined;
+  isLoading = true;
+
   ngOnInit(): void {
       this.getPatients();
+      
   }
   
   sendImageForm:FormGroup = new FormGroup({

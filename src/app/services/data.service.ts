@@ -14,8 +14,6 @@ export class DataService {
   state:BehaviorSubject<boolean> = new BehaviorSubject(false);
   diseaseName:BehaviorSubject<any> = new BehaviorSubject(null);
   userToken:any =localStorage.getItem('token');
-  // patientId:any ='';
-  
   
   addPatient(patient:Patient){
     this._AngularFirestore.createId();
