@@ -47,8 +47,6 @@ export class MedicalRecordsComponent implements OnInit{
       }
     })
     this.getPatientById(this.patientId);
-    
-    
   }
 
   selectImage(i:any){
@@ -90,11 +88,13 @@ export class MedicalRecordsComponent implements OnInit{
       next:data=>{
         this.patient = data.data()
         this.records = this.patient.scans
+        console.log(this.records);
+        
         for(let i = 0 ;i < this.records.length;i++){
           this.timeStamp.push(this.records[i].timestamp)
           
         }
-        console.log(this.timeStamp);
+        // console.log(this.timeStamp);
 
         this.date = this.convertTimestampsToDates(this.timeStamp);
         console.log(this.date , "date");

@@ -1,10 +1,11 @@
-<div class="main container ">
+<div class="main container">
 	<div class="shadow p-3">
-		<div class="w-75 mx-auto">
+		<div class="w-75 content mx-auto">
 			<form (ngSubmit)="sendImage()" [formGroup]="sendImageForm" action="">
 				<div>
 					<mat-form-field class="w-100">
 						<mat-label>Select Patient</mat-label>
+			
 						<mat-select formControlName="id">
 							<mat-option *ngFor="let patient of patients" [value]="patient.id">
 								{{patient.name}}
@@ -22,17 +23,60 @@
 						<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
 					</ngx-dropzone-preview>
 					</ngx-dropzone>
-					<div class="progress mt-3">
-						<div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:percentage + '%'}">
-							{{percentage}}%
-						</div>
-					</div>
+					
 				</div>
 				<div>
 					<button [disabled]="sendImageForm.invalid && files != []" class="btn btn-outline-primary mt-2 d-block mx-auto" type="submit" ><span *ngIf="!loadingFlag">Analyze Now</span> <span *ngIf="loadingFlag">Analyzing image <i  class="fa fa-spinner fa-spin"></i></span></button>
-					<h2 *ngIf="prediction" class="text-center">Patient possible disease name is : <span class="text-primary">{{prediction}}</span></h2>
+					
+					<div *ngIf="prediction" class="shadow rounded-2 my-3 p-3  prediction">
+						<div *ngIf="!saved">
+							<h2  class="m-0 text-center">Based on image attached the result is <span >{{prediction}}</span></h2>
+							<button (click)="saveScan()" type="button" class="btn btn-success d-block m-auto my-3"><span *ngIf="!uploaded">save scan</span><span *ngIf="uploaded">saving</span> <i *ngIf="!uploaded" class="fa-solid fa-cloud-arrow-up ms-2"></i> <i *ngIf="uploaded" class="fa fa-spinner fa-spin ms-2"></i></button>
+							<div class="progress ">
+								<div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:percentage + '%'}">
+									{{percentage}}%
+								</div>
+							</div>
+						</div>
+						<div *ngIf="saved" class="d-flex justify-content-center align-items-center flex-column prediction">
+							<img  src="assets/images/validation.png" alt="">
+							<p >All data were saved in the patient's history</p>
+							<button *ngIf="!detailsClicked" (click)="showDetails()" type="button" class="treatment">Show Details <i *ngIf="!isLoading" class="fa-solid fa-briefcase-medical"></i> <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i></button>
+							<button *ngIf="detailsClicked" (click)="showDetails()" type="button" class="treatment">Hide Details <i *ngIf="!isLoading" class="fa-solid fa-briefcase-medical"></i> <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i></button>
+						</div>
+					</div>
+					<div *ngIf="detailsClicked" class="container shadow  rounded-2 mt-5 mb-3 details">
+						<div class="row justify-content-center bg-light ">
+							<div class="col-md-6 details-content">
+								<div class="p-4">
+									<mat-form-field class="w-100" appearance="outline">
+										<mat-label>Disease Name</mat-label>
+										<input disabled type="text" matInput placeholder="Disease" [value]="diseaseName">
+									</mat-form-field>
+									<mat-form-field class="w-100">
+										<mat-label>Discription</mat-label>
+										<textarea  disabled [value]="description" matInput placeholder="Discription"></textarea>
+									</mat-form-field>
+									
+									<mat-form-field class="w-100" appearance="outline">
+										<mat-label>Symptomps</mat-label>
+										<input disabled type="text" matInput placeholder="Disease" [value]="symptoms">
+									</mat-form-field>
+									<mat-form-field class="w-100" appearance="outline">
+										<mat-label>Treatments</mat-label>
+										<input disabled type="text" matInput placeholder="Disease" [value]="treatment">
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="col-md-6 bg-white details-image">
+								<div  class="py-3">
+									<img class="w-100 rounded-3" [src]="skinDiseasePhotoUrl" alt="skin disease">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</form>
+			</form>	
 		</div>
 	</div>
 	

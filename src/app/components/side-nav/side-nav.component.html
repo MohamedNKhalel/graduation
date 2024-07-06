@@ -2,18 +2,18 @@
     <aside class="d-flex flex-column justify-content-between h-100">
         <ul class="list-unstyled d-flex flex-column gap-5">
             <li routerLink="/patients" routerLinkActive="btn-nav">
-                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-hospital-user"></i><span *ngIf="!layOutVar" class="ms-3">patients</span></a>
+                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-hospital-user"></i><span *ngIf="layOutVar" class="ms-3">patients</span></a>
             </li>
             <li  routerLink="/scan" routerLinkActive="btn-nav">
-                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-camera"></i><span *ngIf="!layOutVar" class="ms-3">Scan</span></a>
+                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-camera"></i><span *ngIf="layOutVar" class="ms-3">Scan</span></a>
             </li>
             <li routerLink="/profile" routerLinkActive="btn-nav">
-                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-user"></i><span *ngIf="!layOutVar" class="ms-3">Profile</span></a>
+                <a class="text-decoration-none text-dark" ><i class="fa-solid fa-user"></i><span *ngIf="layOutVar" class="ms-3">Profile</span></a>
             </li>
         </ul>
-        <a  class="fs-6 text-decoration-none text-dark sign-out-icon" (click)="logOut()"> <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> <span *ngIf="!layOutVar">Sign Out</span></a>
+        <a  class="fs-6 text-decoration-none text-dark sign-out-icon" (click)="logOut()"> <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> <span *ngIf="layOutVar">Sign Out</span></a>
 
-        <i *ngIf="!layOutVar" (click)="changeLayout()" class="fa-solid fa-chevron-left sideBar-icon "></i>
-        <i *ngIf="layOutVar" (click)="changeLayout()" class="fa-solid fa-chevron-right sideBar-icon "></i>
+        <i *ngIf="layOutVar" (click)="changeLayout()" class="fa-solid fa-chevron-left sideBar-icon "></i>
+        <i *ngIf="!layOutVar" (click)="changeLayout()" class="fa-solid fa-chevron-right sideBar-icon "></i>
     </aside>
 </div>

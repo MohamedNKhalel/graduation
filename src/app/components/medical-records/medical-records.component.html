@@ -15,9 +15,10 @@
                     <h3>Prediction : <span class="text-muted">{{record?.prediction}}</span></h3>
                     <h3>File attached : <span class="text-muted">{{record?.name?record.name:"uploaded from phone"}}</span></h3>
                     <h3>Date : <span class="text-muted">{{date[i] | date: 'medium'}}</span></h3>
+                    <h3>Treatment : <span class="text-muted">{{record?.treatment}}</span></h3>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-outline-info d-block m-auto " (click)="selectImage(i)">Preview</button>
+                <div class="d-flex  justify-content-center align-items-center gap-4">
+                    <button type="button" class="btn btn-outline-info  " (click)="selectImage(i)">Preview</button>
                 </div>
             </div>
         </div>

@@ -56,8 +56,10 @@ mat-form-field{
 .user-image{
     position: relative;
     overflow: hidden;
-    border-radius: 50%;
-    height: 95px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; 
+    object-fit: cover; 
 
     img{
         cursor: pointer;
@@ -87,7 +89,10 @@ mat-form-field{
         text-align: center;
     }
     .user-image{
-        height: 250px;
+        width: 120px;
+        height: 120px;
+        display: block;
+        margin-inline: auto;
         margin-bottom: 20px;
     }
     .info-buttons button{

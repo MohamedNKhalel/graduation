@@ -21,6 +21,7 @@ export class RecordsService {
         size : fileObj.size,
         image : fileObj.image,
         prediction : fileObj.prediction,
+        treatment : fileObj.treatment,
         timestamp: firebase.firestore.Timestamp.now()
     }
     

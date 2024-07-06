@@ -8,32 +8,16 @@ import { Observable } from 'rxjs';
 export class DiseaseService {
 
   constructor(private _HttpClient:HttpClient) { }
-  // private apiUrl:string = `https://your-backend-api-url.com/skin-disease`;
-  private mongoUrl = 'mongodb+srv://admin:admin1234@together.cvq6ffb.mongodb.net/skin?retryWrites=true&w=majority';
+  private modelApiUrl = 'http://192.168.1.5:5000';
+  private treatmentApiUrl = 'http://localhost:3000/api/disease'; // API endpoint for disease data
+
+  // private mongoUrl = 'mongodb+srv://admin:admin1234@together.cvq6ffb.mongodb.net/skin?retryWrites=true&w=majority';
 
   diseaseApi(data:any):Observable<any>
   {
-    return this._HttpClient.post(`http://127.0.0.1:5000/DermaApp`,data)
+    return this._HttpClient.post(`${this.modelApiUrl}/DermaApp`,data)
   }
-  // async getSkinDiseaseData(prediction: string): Promise<SkinDiseaseData | null> {
-  //   const client = new MongoClient(this.mongoUrl);
-  //   await client.connect();
-  //   const database = client.db('skin');
-  //   const collection = database.collection('derma_center');
-
-  //   const diseaseData = await collection.findOne({ disease_name: prediction });
-  //   await client.close();
-
-  //   if (diseaseData) {
-  //     return {
-  //       imageUrl: diseaseData['image_url'],
-  //       diseaseName: diseaseData['disease_name'],
-  //       description: diseaseData['description'],
-  //       symptoms: (diseaseData['symptoms'] as string).split(',').map(s => s.trim()),
-  //       treatment: diseaseData['treatment']
-  //     };
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  getDiseaseData(diseaseName: string): Observable<any> {
+    return this._HttpClient.get<any>(`${this.treatmentApiUrl}/${diseaseName}`);
+  }
 }

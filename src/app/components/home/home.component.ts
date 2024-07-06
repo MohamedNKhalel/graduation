@@ -36,16 +36,19 @@ export class HomeComponent implements OnInit{
   prediction!:string 
   patients:Patient[]=[];
 
-  skinDiseasePhotoUrl: string | undefined;
-  diseaseName: string | undefined;
-  description: string | undefined;
+  skinDiseasePhotoUrl: string = '';
+  diseaseName: string ='';
+  description: string ='';
   symptoms: string[] = [];
-  treatment: string | undefined;
-  isLoading = true;
+  treatment: string ='';
+  isLoading = false;
+  detailsClicked:boolean = false;
+  saved:boolean=false;
+  uploaded:boolean=false;
 
   ngOnInit(): void {
       this.getPatients();
-      
+      // this.fetchDiseaseData('Cowpox')
   }
   
   sendImageForm:FormGroup = new FormGroup({
@@ -89,25 +92,31 @@ getPatients(){
 }
 
 
-sendImage(){
-  console.log(this.sendImageForm.get('id')?.value); //after clicking on send the id of the select passes to the form
-
-  this.loadingFlag = true;
-  let formData = new FormData;
-  formData.append('fileup',this.selectedFiles[0]);
-
+getPatientById(patientId:any){
+  this._DataService.getSpecificPatient().doc(patientId).get().subscribe({
+    next:data=>{
+      console.log(data.data());
+    },
+    error:err=>{
+      console.log(err);
+      
+    }
+  })
+}
+saveScan(){
+  this.uploaded = true;
   this.currentSelectedFile = new RecordFile(this.selectedFiles[0])
   const path =  'Uploads/' + this.currentSelectedFile.file.name;
   const storageRef = this._AngularFireStorage.ref(path);
   const record = storageRef.put(this.selectedFiles[0]);
-
+  
   record.snapshotChanges().pipe(finalize(()=>{
     storageRef.getDownloadURL().subscribe(downloadLink=>{
       this.currentSelectedFile.image = downloadLink;
       this.currentSelectedFile.name = this.currentSelectedFile.file.name;
       this.currentSelectedFile.size = this.currentSelectedFile.file.size;
       this.currentSelectedFile.prediction = this.prediction;
-
+      this.currentSelectedFile.treatment = this.treatment;
 
       this._RecordsService.saveFileMetaData(this.currentSelectedFile,this.sendImageForm.get('id')?.value)
     })
@@ -116,18 +125,33 @@ sendImage(){
       console.log(data);
       
       this.percentage = (data.bytesTransferred * 100 / data.totalBytes);
+      if(this.percentage == 100){
+        setTimeout(() => {
+          this.saved = true;
+          this.uploaded =false;
+        }, 1000);
+      }
     },
     error:err=>{
       console.log(err);
       
     }
   })
+}
 
+
+sendImage(){
+  console.log(this.sendImageForm.get('id')?.value); //after clicking on send the id of the select passes to the form
+  this.getPatientById(this.sendImageForm.get('id')?.value)
+  this.loadingFlag = true;
+  let formData = new FormData;
+  formData.append('fileup',this.selectedFiles[0]);
   this._DiseaseService.diseaseApi(formData).subscribe({
     next:data=>{
       console.log(data);
       this.prediction = data.prediction;
       this._DataService.diseaseName.next(this.prediction)
+      this.fetchDiseaseData(this.prediction)
       console.log(this.prediction);
       this.loadingFlag = false
       this._DataService.updateDiseaseProperty().doc(this.sendImageForm.get('id')?.value).update({
@@ -144,5 +168,26 @@ sendImage(){
       this.prediction = "Diagnoses Not Avaliable" 
     }
   })
+}
+showDetails(){
+  this.fetchDiseaseData(this.prediction)
+  this.detailsClicked = !this.detailsClicked;
+  this.isLoading = !this.isLoading;
+}
+fetchDiseaseData(diseaseName: string) {
+  this._DiseaseService.getDiseaseData(diseaseName).subscribe((data) => {
+    if (data) {
+      console.log(data);
+      
+      this.skinDiseasePhotoUrl = data.image_url;
+      this.diseaseName = data.disease_name;
+      this.description = data.description;
+      this.symptoms = (data.symptoms as string).split(',').map((s) => s.trim());
+      this.treatment = data.treatment;
+      this.isLoading = false;
+    } else {
+      this.isLoading = false;
+    }
+  });
 }
 }

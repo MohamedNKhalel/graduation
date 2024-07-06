@@ -87,6 +87,8 @@
     right: 0;
     z-index: 999;
     #card{
+      height: 100vh !important;
+      background-color: red !important;
         #cardHeader{
             background-color: var(--main-color) !important;
             text-align: center;
@@ -108,8 +110,8 @@
             }
         }
         #cardBody{
-            height: 85.5vh;
             overflow: auto;
+            height: 85.7%;
         }
         #cardFooter{
             padding: 10px;
@@ -127,8 +129,7 @@
         width: 100%;
       }
       #card{
-        #cardBody{
-          height: 84vh !important;
-        }
+        height: 100vh !important;
+        
       }
     }

@@ -5,9 +5,8 @@ export class RecordFile {
     prediction:string = "";
     image:string = '';
     file:File;
-    timestamp:any =''
-
-    
+    timestamp:any ='';
+    treatment:string = '';
     constructor(file:File){
         this.file=file;
     }

@@ -135,5 +135,19 @@
                 </ngx-dropzone>
                 <button [disabled]="disableButton" type="button" (click)="sendImage()" class="btn btn-outline-primary d-block m-auto mt-3 "><span *ngIf="!photoLoadingFlag">Change photo</span> <span *ngIf="photoLoadingFlag" >processing <i class="fa fa-spinner fa-spin ms-2"></i></span></button>
         </form>
+        <div>
+            <h3>Some instructions that might help :</h3>
+            <ol>
+                <li>
+                    <p>Choose a Clear and High-Quality Photo</p>
+                </li>
+                <li>
+                    <p>Ensure your face is prominently visible in the photo</p>
+                </li>
+                <li>
+                    <p>use a square crop for your profile picture</p>
+                </li>
+            </ol>
+        </div>
     </div>
 </section>

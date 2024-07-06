@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SideNavComponent implements OnInit {
   constructor(private _AuthService:AuthService,private _Renderer2:Renderer2){}
   @ViewChild('sideNav') sideNav!: ElementRef;
-  show:boolean = true;
+  // show:boolean = true;
 
 
   @Output() mynav = new EventEmitter<boolean>();

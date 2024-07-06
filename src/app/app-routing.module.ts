@@ -5,7 +5,7 @@ import { authGuard } from './guards/auth.guard';
 const routes: Routes = [
   {path:"",loadComponent:()=>import ("./layouts/blanklayout/blanklayout.component").then((m)=>m.BlanklayoutComponent),canActivate:[authGuard],children:[
     {path:"",redirectTo:"patients",pathMatch:'full'},
-    {path:"scan",loadComponent:()=>import("./components/home/home.component").then((m)=>m.HomeComponent),title:"Home"},
+    {path:"scan",loadComponent:()=>import("./components/home/home.component").then((m)=>m.HomeComponent),title:"Scan"},
     {path:'patients',loadComponent:()=>import('./components/patients/patients.component').then((m)=>m.PatientsComponent),title:"Patients"},
     {path:'details/:id',loadComponent:()=>import('./components/patient-details/patient-details.component').then((m)=>m.PatientDetailsComponent),title:"details"},
     {path:'profile',loadComponent:()=>import('./components/profile/profile.component').then((m)=>m.ProfileComponent),title:'Profile'},

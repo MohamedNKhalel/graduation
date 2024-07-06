@@ -1,3 +1,4 @@
+
   .response-container {
     border: 1px solid #ccc;
     padding: 20px;
@@ -129,8 +130,97 @@
         }
     }
 }
+.details{
+  .treatment{
+    border: none;
+    padding: 10px;
+    background-color:var(--main-color);
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: all .2s linear;
+    i{
+      margin-left: 10px;
+      transition: all .3s linear;
+
+    }
+    &:hover{
+      background-color:#00a666;
+      color: white;
+      i{
+        color: var(--bs-white) !important;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+.prediction{
+  background-color: var(--second-color);
+  font-size: 16px;
+  color: white;
+  img{
+    width: 60px;
+  }
+  p{
+    text-align: center;
+    color: rgba($color: #fff, $alpha: .5);
+  }
+  h2{
+    font-size: 1.4em;
+    span{
+      color: var(--tomato);
+      font-weight: 1000;
+      
+    }
+  }
+  .treatment{
+    border: none;
+    padding: 10px;
+    background-color:var(--main-color);
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: all .2s linear;
+    i{
+      margin-left: 10px;
+      transition: all .3s linear;
+
+    }
+    &:hover{
+      background-color:#00a666;
+      color: white;
+      i{
+        color: var(--bs-white) !important;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+
+mat-form-field{
+    border-color: red !important;
+  mat-label{
+      color: var(--main-color) !important;
+  }
+  input{
+      &:disabled{
+          color: black !important;
+      }
+  }
+  textarea{
+    resize: none;
+    &:disabled{
+      
+      color: black !important;
+  }
+  }
+}
 
 @media screen and (max-width:768px) {
+  .prediction{
+    font-size: 12px;
+  }
   .right{
     width: 360px !important;
   }
@@ -139,7 +229,17 @@
     z-index: 99;
     #cardBody{
       max-width: 380px !important;
-
     }
+  }
+  .main{
+    .content{
+      width: 100% !important;
+    }
+  }
+  .details-image{
+    order: 0;
+  }
+  .details-content{
+    order: 1;
   }
 }
