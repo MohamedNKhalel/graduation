@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit{
   constructor(private _DatePipe:DatePipe,private _RecordsService:RecordsService,private _AngularFireStorage:AngularFireStorage,private _DiseaseService:DiseaseService,private _DataService:DataService,private _GeminiService:GeminiService){}
   loadingFlag:boolean = false;
   
+  allDetails:any;
+
   files: File[] = [];
   selectedFiles!:FileList;
   currentSelectedFile!:RecordFile;
@@ -48,7 +50,6 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
       this.getPatients();
-      // this.fetchDiseaseData('Cowpox')
   }
   
   sendImageForm:FormGroup = new FormGroup({
@@ -92,17 +93,6 @@ getPatients(){
 }
 
 
-getPatientById(patientId:any){
-  this._DataService.getSpecificPatient().doc(patientId).get().subscribe({
-    next:data=>{
-      console.log(data.data());
-    },
-    error:err=>{
-      console.log(err);
-      
-    }
-  })
-}
 saveScan(){
   this.uploaded = true;
   this.currentSelectedFile = new RecordFile(this.selectedFiles[0])
@@ -138,11 +128,22 @@ saveScan(){
     }
   })
 }
-
+getDetails(prediction:any){
+  this._DataService.getTreatments(prediction).subscribe({
+    next:data=>{
+      this.allDetails = data.payload.data()
+      console.log(this.allDetails);
+      
+    },
+    error:err=>{
+      console.log(err);
+      
+    }
+  })
+}
 
 sendImage(){
   console.log(this.sendImageForm.get('id')?.value); //after clicking on send the id of the select passes to the form
-  this.getPatientById(this.sendImageForm.get('id')?.value)
   this.loadingFlag = true;
   let formData = new FormData;
   formData.append('fileup',this.selectedFiles[0]);
@@ -152,6 +153,8 @@ sendImage(){
       this.prediction = data.prediction;
       this._DataService.diseaseName.next(this.prediction)
       this.fetchDiseaseData(this.prediction)
+      this.getDetails(this.prediction)
+
       console.log(this.prediction);
       this.loadingFlag = false
       this._DataService.updateDiseaseProperty().doc(this.sendImageForm.get('id')?.value).update({

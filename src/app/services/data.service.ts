@@ -47,6 +47,9 @@ export class DataService {
     return this._AngularFirestore.collection(`users/${JSON.parse(this.userToken)}/patients`)
   }
 
+  getTreatments(prediction:any){
+    return this._AngularFirestore.collection(`treatments`).doc(`${prediction}`).snapshotChanges();
+  }
   // getTimestamp(): Observable<any> {
   //   return this._AngularFirestore.collection('yourCollection').doc('yourDocumentId').get()
   //     .pipe(map(snapshot => {

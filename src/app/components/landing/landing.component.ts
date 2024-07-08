@@ -16,9 +16,12 @@ export class LandingComponent implements OnInit{
   @ViewChild('navbar') navelement!: ElementRef;
   @HostListener("window:scroll")
   onscroll(){
+    console.log(scrollY);
+    
     this.animateCards();
+    this.animateTeam()
     if(window.scrollY>=1000){
-      $(".my-card").slideDown(2000)
+      $(".my-card").slideDown(1000)
     }
     else{
       $(".my-card").slideUp(1000);
@@ -38,6 +41,21 @@ export class LandingComponent implements OnInit{
     }
     else{
       $(".about-content").slideUp(1000)
+    }
+  }
+  animateTeam(){
+    for(let i = 1; i<=5 ; i++){
+      // console.log(i);
+      if(window.scrollY>2450){
+        $(`.teamcard${1}`).fadeIn(1000)
+        $(`.teamcard${2}`).fadeIn(1400)
+        $(`.teamcard${3}`).fadeIn(1800)
+        $(`.teamcard${4}`).fadeIn(2000)
+        $(`.teamcard${5}`).fadeIn(2400)
+      }
+      else{
+        $(`.teamcard${i}`).fadeOut(1000)
+      }
     }
   }
 }
